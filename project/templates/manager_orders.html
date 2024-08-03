@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Управление заказами{% endblock %}
+{% block content %}
+    <h2>Управление заказами</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID заказа</th>
+                <th>Название продукта</th>
+                <th>ФИО клиента</th>
+                <th>Статус</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.product_name }}</td>
+                <td>{{ order.client_name }}</td>
+                <td>{{ order.status }}</td>
+                <td>
+                    <a href="{{ url_for('update_order', order_id=order.id) }}" class="btn btn-primary btn-sm">Обновить</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
